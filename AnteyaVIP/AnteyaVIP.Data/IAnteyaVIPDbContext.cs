@@ -6,9 +6,9 @@ namespace AnteyaVIP.Data
 
     using AnteyaVIP.Models;
 
-    public interface IDigitalLibraryDbContext
+    public interface IAnteyaVIPDbContext
     {
-        IDbSet<ApplicationUser> Users { get; set; }
+        IDbSet<User> Users { get; set; }
 
         //IDbSet<Author> Authors { get; set; }
 

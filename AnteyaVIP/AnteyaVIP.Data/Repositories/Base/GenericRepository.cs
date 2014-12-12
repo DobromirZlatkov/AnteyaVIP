@@ -15,7 +15,7 @@
 
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        public GenericRepository(IDigitalLibraryDbContext context)
+        public GenericRepository(IAnteyaVIPDbContext context)
         {
             if (context == null)
             {
@@ -28,7 +28,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected IDigitalLibraryDbContext Context { get; set; }
+        protected IAnteyaVIPDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {

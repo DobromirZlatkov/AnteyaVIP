@@ -52,11 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DigitalLibraryData.cs" />
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="AnteyaVIPData.cs" />
+    <Compile Include="AnteyaVIPDbContext.cs" />
     <Compile Include="IdentityManager.cs" />
-    <Compile Include="IDigitalLibraryData.cs" />
-    <Compile Include="IDigitalLibraryDbContext.cs" />
+    <Compile Include="IAnteyaVIPData.cs" />
+    <Compile Include="IAnteyaVIPDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\DeletableEntityRepository.cs" />

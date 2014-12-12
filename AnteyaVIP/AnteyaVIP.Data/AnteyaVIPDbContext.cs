@@ -12,17 +12,17 @@
     using AnteyaVIP.Data.Migrations;
     using AnteyaVIP.Models;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IDigitalLibraryDbContext
+    public class AnteyaVIPDbContext : IdentityDbContext<User>, IAnteyaVIPDbContext
     {
-        public ApplicationDbContext()
+        public AnteyaVIPDbContext()
             : this("DefaultConnection")
         {
         }
 
-        public ApplicationDbContext(string nameOrConnectionString)
+        public AnteyaVIPDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AnteyaVIPDbContext, Configuration>());
         }
 
         //public virtual IDbSet<Author> Authors { get; set; }
@@ -43,9 +43,9 @@
             }
         }
 
-        public static ApplicationDbContext Create()
+        public static AnteyaVIPDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new AnteyaVIPDbContext();
         }
 
         public override int SaveChanges()

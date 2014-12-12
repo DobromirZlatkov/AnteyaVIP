@@ -12,10 +12,10 @@
     {
         private const int StartWorkYear = 1800;
         private int CurrentYear = DateTime.Now.Year;
-        private IDigitalLibraryData data;
+        private IAnteyaVIPData data;
         private ICacheService cache;
 
-        public DropDownListPopulator(IDigitalLibraryData data, ICacheService cache)
+        public DropDownListPopulator(IAnteyaVIPData data, ICacheService cache)
         {
             this.cache = cache;
             this.data = data;

@@ -9,7 +9,7 @@
     public class DeletableEntityRepository<T> :
     GenericRepository<T>, IDeletableEntityRepository<T> where T : class, IDeletableEntity
     {
-        public DeletableEntityRepository(IDigitalLibraryDbContext context)
+        public DeletableEntityRepository(IAnteyaVIPDbContext context)
             : base(context)
         {
         }

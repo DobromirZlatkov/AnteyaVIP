@@ -3,9 +3,9 @@
     using AnteyaVIP.Contracts;
     using AnteyaVIP.Models;
 
-    public interface IDigitalLibraryData
+    public interface IAnteyaVIPData
     {
-        IDigitalLibraryDbContext Context { get; }
+        IAnteyaVIPDbContext Context { get; }
 
         //IDeletableEntityRepository<Author> Authors { get; }
 
@@ -17,7 +17,7 @@
 
         //IDeletableEntityRepository<Work> Works { get; }
 
-        IRepository<ApplicationUser> Users { get; }
+        IRepository<User> Users { get; }
 
         int SaveChanges();
     }

@@ -6,18 +6,18 @@
     using System;
     using System.Collections.Generic;
 
-    public class DigitalLibraryData : IDigitalLibraryData
+    public class AnteyaVIPData : IAnteyaVIPData
     {
-        private readonly IDigitalLibraryDbContext context;
+        private readonly IAnteyaVIPDbContext context;
 
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 
-        public DigitalLibraryData(IDigitalLibraryDbContext context)
+        public AnteyaVIPData(IAnteyaVIPDbContext context)
         {
             this.context = context;
         }
 
-        public IDigitalLibraryDbContext Context
+        public IAnteyaVIPDbContext Context
         {
             get
             {
@@ -25,9 +25,9 @@
             }
         }
 
-        public IRepository<ApplicationUser> Users
+        public IRepository<User> Users
         {
-            get { return this.GetRepository<ApplicationUser>(); }
+            get { return this.GetRepository<User>(); }
         }
 
         //public IDeletableEntityRepository<Author> Authors

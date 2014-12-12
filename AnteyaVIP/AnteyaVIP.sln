@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{FF7BFC62-F040-4744-B624-5E9C6B3298CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{8B9D2B29-8DFE-40E4-AA83-B615EF5994D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B28A6AA5-A6A5-468C-996C-1FE07353752C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnteyaVIP.Common", "AnteyaVIP.Common\AnteyaVIP.Common.csproj", "{89A54358-43C6-46C6-B666-BCD5077103C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnteyaVIP.Contracts", "AnteyaVIP.Contracts\AnteyaVIP.Contracts.csproj", "{F19597AD-4645-4C7A-A79B-9D31BB1728B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnteyaVIP.Web", "AnteyaVIP.Web\AnteyaVIP.Web.csproj", "{81F69C5F-1F37-43CD-BDA7-6438C883EBE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnteyaVIP.Data", "AnteyaVIP.Data\AnteyaVIP.Data.csproj", "{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnteyaVIP.Models", "AnteyaVIP.Models\AnteyaVIP.Models.csproj", "{50710F86-AF73-4544-920C-E9878F2F5303}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89A54358-43C6-46C6-B666-BCD5077103C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A54358-43C6-46C6-B666-BCD5077103C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A54358-43C6-46C6-B666-BCD5077103C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A54358-43C6-46C6-B666-BCD5077103C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19597AD-4645-4C7A-A79B-9D31BB1728B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19597AD-4645-4C7A-A79B-9D31BB1728B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19597AD-4645-4C7A-A79B-9D31BB1728B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19597AD-4645-4C7A-A79B-9D31BB1728B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F69C5F-1F37-43CD-BDA7-6438C883EBE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F69C5F-1F37-43CD-BDA7-6438C883EBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F69C5F-1F37-43CD-BDA7-6438C883EBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F69C5F-1F37-43CD-BDA7-6438C883EBE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50710F86-AF73-4544-920C-E9878F2F5303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50710F86-AF73-4544-920C-E9878F2F5303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50710F86-AF73-4544-920C-E9878F2F5303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50710F86-AF73-4544-920C-E9878F2F5303}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89A54358-43C6-46C6-B666-BCD5077103C8} = {B28A6AA5-A6A5-468C-996C-1FE07353752C}
+		{F19597AD-4645-4C7A-A79B-9D31BB1728B6} = {FF7BFC62-F040-4744-B624-5E9C6B3298CA}
+		{81F69C5F-1F37-43CD-BDA7-6438C883EBE6} = {8B9D2B29-8DFE-40E4-AA83-B615EF5994D5}
+		{84DA13D9-DEF1-4C99-91BE-F01E7F6C9ED8} = {FF7BFC62-F040-4744-B624-5E9C6B3298CA}
+		{50710F86-AF73-4544-920C-E9878F2F5303} = {FF7BFC62-F040-4744-B624-5E9C6B3298CA}
+	EndGlobalSection
+EndGlobal

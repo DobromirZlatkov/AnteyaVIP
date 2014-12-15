@@ -30,25 +30,25 @@
             get { return this.GetRepository<User>(); }
         }
 
-        //public IDeletableEntityRepository<Author> Authors
-        //{
-        //    get { return this.GetDeletableEntityRepository<Author>(); }
-        //}
+        public IDeletableEntityRepository<Category> Categories
+        {
+            get { return this.GetDeletableEntityRepository<Category>(); }
+        }
 
-        //public IDeletableEntityRepository<Comment> Comments
-        //{
-        //    get { return this.GetDeletableEntityRepository<Comment>(); }
-        //}
+        public IDeletableEntityRepository<Characteristic> Characteristics
+        {
+            get { return this.GetDeletableEntityRepository<Characteristic>(); }
+        }
 
-        //public IDeletableEntityRepository<Genre> Genres
-        //{
-        //    get { return this.GetDeletableEntityRepository<Genre>(); }
-        //}
+        public IDeletableEntityRepository<Manufacturer> Manufacturers
+        {
+            get { return this.GetDeletableEntityRepository<Manufacturer>(); }
+        }
 
-        //public IRepository<Like> Likes
-        //{
-        //    get { return this.GetRepository<Like>(); }
-        //}
+        public IDeletableEntityRepository<Product> Products
+        {
+            get { return this.GetDeletableEntityRepository<Product>(); }
+        }
 
         //public IDeletableEntityRepository<Work> Works
         //{
@@ -104,6 +104,5 @@
 
             return (IDeletableEntityRepository<T>)this.repositories[typeof(T)];
         }
-
     }
 }

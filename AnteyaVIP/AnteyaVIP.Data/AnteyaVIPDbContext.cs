@@ -25,15 +25,13 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AnteyaVIPDbContext, Configuration>());
         }
 
-        //public virtual IDbSet<Author> Authors { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
 
-        //public virtual IDbSet<Comment> Comments { get; set; }
+        public virtual IDbSet<Characteristic> Characteristics { get; set; }
 
-        //public virtual IDbSet<Genre> Genres { get; set; }
+        public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
 
-        //public virtual IDbSet<Like> Likes { get; set; }
-
-        //public virtual IDbSet<Work> Works { get; set; }
+        public virtual IDbSet<Product> Products { get; set; }
 
         public DbContext DbContext
         {

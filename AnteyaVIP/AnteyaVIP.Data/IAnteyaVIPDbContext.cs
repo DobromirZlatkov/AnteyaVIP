@@ -10,15 +10,13 @@ namespace AnteyaVIP.Data
     {
         IDbSet<User> Users { get; set; }
 
-        //IDbSet<Author> Authors { get; set; }
+        IDbSet<Category> Categories { get; set; }
 
-        //IDbSet<Comment> Comments { get; set; }
+        IDbSet<Characteristic> Characteristics { get; set; }
 
-        //IDbSet<Genre> Genres { get; set; }
+        IDbSet<Manufacturer> Manufacturers { get; set; }
 
-        //IDbSet<Like> Likes { get; set; }
-
-        //IDbSet<Work> Works { get; set; }
+        IDbSet<Product> Products { get; set; }
 
         DbContext DbContext { get; }
 

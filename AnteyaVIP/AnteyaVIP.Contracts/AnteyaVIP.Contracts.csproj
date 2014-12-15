@@ -49,6 +49,7 @@
     <Compile Include="AuditInfo.cs" />
     <Compile Include="CodeFirstConventions\UnicodeAttributeConvention.cs" />
     <Compile Include="DataAnotations\IsUnicodeAttribute.cs" />
+    <Compile Include="DeletableEntity.cs" />
     <Compile Include="IAuditInfo.cs" />
     <Compile Include="IDeletableEntity.cs" />
     <Compile Include="IDeletableEntityRepository.cs" />

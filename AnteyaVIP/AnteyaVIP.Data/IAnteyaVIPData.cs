@@ -7,15 +7,13 @@
     {
         IAnteyaVIPDbContext Context { get; }
 
-        //IDeletableEntityRepository<Author> Authors { get; }
+        IDeletableEntityRepository<Category> Categories { get; }
 
-        //IDeletableEntityRepository<Comment> Comments { get; }
+        IDeletableEntityRepository<Characteristic> Characteristics { get; }
 
-        //IDeletableEntityRepository<Genre> Genres { get; }
+        IDeletableEntityRepository<Manufacturer> Manufacturers { get; }
 
-        //IRepository<Like> Likes { get; }
-
-        //IDeletableEntityRepository<Work> Works { get; }
+        IDeletableEntityRepository<Product> Products { get; }
 
         IRepository<User> Users { get; }
 

@@ -1,0 +1,14 @@
+﻿@model int
+
+@(Html.Kendo().DropDownListFor(m => m)
+        .AutoBind(false)
+        .OptionLabel("Select Category...")
+        .DataTextField("Name")
+        .DataValueField("Id")
+        .DataSource(dataSource =>
+        {
+            dataSource.Read(read => read.Action("GetCategories", "Categories"))
+                    .ServerFiltering(true);
+        })
+)
+@Html.ValidationMessageFor(m => m)

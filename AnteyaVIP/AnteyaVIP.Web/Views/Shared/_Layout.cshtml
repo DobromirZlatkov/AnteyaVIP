@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/kendo")
+    @Styles.Render("~/Content/kendo")
+    @RenderSection("styles", required: false)
+    @Styles.Render("~/Content/custom")
 
 </head>
 <body>
@@ -20,10 +26,25 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = string.Empty }, null)</li>
+
+                    @*<li>@Html.ActionLinkLocalization("English", "Index", "Locales", new { lang = "en_US" })</li>
+                    <li>@Html.ActionLinkLocalization("Türkçe", "Index", "Locales", new { lang = "tr_TR" })</li>*@
+
+                    @*if (User.IsInRole(GlobalConstants.AdminRole))
+                    {*@
+                    <li>
+                        Administration
+                        <ul>
+                            <li>@Html.ActionLink("Manufacturers", "Index", "Manufacturers", new { area = "Administration" }, new {@class = "administration-dropdown"})</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Administration" }, new { @class = "administration-dropdown" })</li>
+                            <li>@Html.ActionLink("Products", "Index", "Products", new { area = "Administration" }, new { @class = "administration-dropdown" })</li>
+                        </ul>
+                    </li>
+                    @*}*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -37,8 +58,13 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/kendo")
     @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $('#menu').kendoMenu();
+        })
+    </script>
 </body>
 </html>

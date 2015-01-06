@@ -5,10 +5,8 @@
 
     public interface IDropDownListPopulator
     {
-        //IEnumerable<SelectListItem> GetAllGenres();
+        IEnumerable<SelectListItem> GetAllManufacturers();
 
-        //IEnumerable<SelectListItem> GetAllAuthors();
-
-        IEnumerable<SelectListItem> GetYears();
+        IEnumerable<SelectListItem> GetAllCategories();
     }
 }

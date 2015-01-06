@@ -1,0 +1,146 @@
+﻿@using AnteyaVIP.Web.Areas.Administration.ViewModels.Products;
+@using AnteyaVIP.Web.Areas.Administration.ViewModels.Categories;
+@using AnteyaVIP.Web.Areas.Administration.ViewModels.Manufacturers;
+@using AnteyaVIP.Web.Areas.Administration.ViewModels.Characteristics;
+@using AnteyaVIP.Web.Areas.Administration.ViewModels.Pictures;
+@model ProductForeignKeyValues
+@{
+    const string ControllerName = "Products";
+    ViewBag.Title = ControllerName;
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo()
+    .Grid<ProductInputModel>()
+    .Name("Grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id);
+        columns.Bound(p => p.Name);
+        columns.Bound(p => p.Description).Width(200);
+        columns.Bound(p => p.Price);
+        columns.ForeignKey(p => p.CategoryId, Model.Categories, "Id", "Name").Width(300).EditorTemplateName("CategoryId");
+        columns.ForeignKey(p => p.ManufacturerId, Model.Manufacturers, "Id", "Name").Width(300).EditorTemplateName("ManufacturerId");
+        columns.Bound(p => p.CreatedOn).Hidden();
+        columns.Bound(p => p.ModifiedOn).Hidden();
+        columns.Command(com => com.Custom("ViewDetails").Click("showDetails"));
+        columns.Command(com => com.Edit()).Title("Edit");
+        columns.Command(com => com.Destroy()).Title("Delete");
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .ClientDetailTemplateId("characteristics-template")
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .ToolBar(toolbar => toolbar.Create())
+    .DataSource(data =>
+        data
+            .Ajax()
+            .ServerOperation(false)
+            .Model(model => model.Id(p => p.Id))
+                .Read(read => read.Action("Read", ControllerName))
+                .Create(create => create.Action("Create", ControllerName))
+                .Update(update => update.Action("Update", ControllerName))
+                .Destroy(destroy => destroy.Action("Destroy", ControllerName))
+            ))
+
+<script id="characteristics-template" type="text/kendo-tmpl">
+
+    @(Html.Kendo().Grid<CharacteristicViewModel>()
+            .Name("grid_#=Id#")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.Id);
+                columns.Bound(p => p.Parameter);
+                columns.Bound(p => p.Value);
+                columns.Bound(p => p.ModifiedOn).Hidden();
+                columns.Bound(p => p.CreatedOn).Hidden();
+                columns.Command(com => com.Edit()).Title("Edit");
+                columns.Command(com => com.Destroy()).Title("Delete");
+            })
+            .Pageable(page => page.Refresh(true))
+            .Sortable()
+            .Editable(edit => edit.Mode(GridEditMode.PopUp))
+            .ToolBar(toolbar => toolbar.Create())
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(10)
+                .Model(model => model.Id(p => p.Id))
+                    .Read(read => read.Action("Read_ProductCharacteristics", "Characteristics", new { productId = "#=Id#" }))
+                    .Create(create => create.Action("Create", "Characteristics", new { productId = "#=Id#" }))
+                    .Update(update => update.Action("Update", "Characteristics"))
+                    .Destroy(destroy => destroy.Action("Destroy", "Characteristics"))
+            )
+            .ToClientTemplate()
+    )
+
+</script>
+
+<script>
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+</script>
+
+@(Html.Kendo().Window().Name("Details")
+    .Title("Customer Details")
+    .Visible(false)
+    .Modal(true)
+    .Draggable(true)
+    .Width(500)
+)
+
+<script type="text/x-kendo-template" id="image-upload-template">
+    @*<img src="@Url.Action("Image", "Tickets", new { id = Model.ImageId.Value })" alt="@Model.Title" class="img-responsive" />*@
+    @*<img src="@Url.Action("Picture", "Pictures", new { id = @item.Id })" alt="N/A" class="img-responsive" />*@
+    @(Html.Kendo().Grid<PictureViewModel>()
+            .Name("grid_#=Id#")
+                .Pageable(page => page.Refresh(true))
+                .Sortable()
+                .Editable(edit => edit.Mode(GridEditMode.PopUp))
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(10)
+                    .Model(model => model.Id(p => p.Id))
+                                .Read(read => read.Action("Read_ProductPictures", "Pictures", new { productId = "#=Id#" }))
+                                .Update(update => update.Action("Update", "Pictures"))
+                                .Destroy(destroy => destroy.Action("Destroy", "Pictures"))
+                )
+                .Columns(columns =>
+                    {
+                        columns.Bound(p => p.Id);
+                        columns.Bound(p => p.FileExtension);
+                        @* columns.Template((e => { }).ClientTemplate("<img src='/Tickets/Image/' "+" '#=Id#' alt='nekLujijGHIgoUjfAjJYclqNJmy' class='img-responsive'>");*@
+                        columns.Template(e => { }).ClientTemplate("<img src='/Pictures/Picture/#=Id#' />").Width(140).Title("Image");
+                        //columns.Template(e => { }).ClientTemplate("<img src='" + @Url.Action("Picture", "Pictures", new { id = @item }) + "'/>").Width(140).Title("Image");
+                        columns.Command(com => com.Edit()).Title("Edit");
+                        columns.Command(com => com.Destroy()).Title("Delete");
+                    })
+                .ToClientTemplate()
+    )
+
+    @(Html.Kendo().Upload()
+        .Name("UploadedFiles")
+        .Multiple(true)
+        .Async(async => async.Save("Upload", "Pictures", new { productId = "#=Id#" }).Remove("Remove", "Pictures", new { productId = "#=Id#" }).AutoUpload(true))
+        .ToClientTemplate()
+    )
+
+</script>
+
+<script type="text/javascript">
+    var detailsTemplate = kendo.template($("#image-upload-template").html());
+
+    function showDetails(e) {
+        e.preventDefault();
+
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var wnd = $("#Details").data("kendoWindow");
+
+        wnd.content(detailsTemplate(dataItem));
+        wnd.center().open();
+    }
+</script>

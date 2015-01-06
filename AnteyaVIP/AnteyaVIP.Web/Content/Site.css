@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+.administration-dropdown{
+
+}
+.field-validation-error{
+    color:red;
+}
+#Description{
+    height:200px;
+}
+#characteristics-header{
+    word-spacing: 90px;
+}
+.display-inline{
+    display:inline-block;
+}

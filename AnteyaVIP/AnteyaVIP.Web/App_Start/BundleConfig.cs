@@ -23,10 +23,10 @@ namespace AnteyaVIP.Web
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                         "~/Content/kendo/kendo.common.min.css",
                         "~/Content/kendo/kendo.common-bootstrap.min.css",
-                        "~/Content/kendo/kendo.metro.min.css"));
+                        "~/Content/kendo/kendo.uniform.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
-                        "~/Content/site.css"));
+                        "~/Content/Site.css"));
         }
 
         private static void RegisterScriptBundles(BundleCollection bundles)
@@ -37,7 +37,6 @@ namespace AnteyaVIP.Web
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                         .Include(
-                        "~/Scripts/jquery*",
                         "~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

@@ -21,7 +21,7 @@
         }
 
         [Key]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]
@@ -34,6 +34,7 @@
         public string Description { get; set; }
 
         [Required]
+        [Range(0.01, 100000.00)]
         public decimal Price { get; set; }
 
        // public double ProductWeigth { get; set; }

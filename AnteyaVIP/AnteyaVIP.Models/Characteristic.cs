@@ -7,7 +7,7 @@
     public class Characteristic : DeletableEntity
     {
         [Key]
-        public int CharacteristicId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]

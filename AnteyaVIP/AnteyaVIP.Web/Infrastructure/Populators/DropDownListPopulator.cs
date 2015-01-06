@@ -21,55 +21,28 @@
             this.data = data;
         }
 
-        //public IEnumerable<SelectListItem> GetAllGenres()
-        //{
-        //    var genres = this.cache.Get<IEnumerable<SelectListItem>>("genres",
-        //   () =>
-        //   {
-        //       return this.data.Genres
-        //          .All()
-        //          .Select(c => new SelectListItem
-        //          {
-        //              Value = c.Id.ToString(),
-        //              Text = c.GenreName
-        //          })
-        //          .ToList();
-        //   });
-
-        //    return genres;
-        //}
-
-        //public IEnumerable<SelectListItem> GetAllAuthors()
-        //{
-        //    return this.data.Authors
-        //       .All()
-        //       .Select(c => new SelectListItem
-        //       {
-        //           Value = c.Id.ToString(),
-        //           Text = c.Name
-        //       })
-        //       .ToList();
-        //}
-
-        public IEnumerable<SelectListItem> GetYears()
+        public IEnumerable<SelectListItem> GetAllManufacturers()
         {
-            var possibleYears = this.cache.Get<IEnumerable<SelectListItem>>("years",
-             () =>
-             {
-                 var years = new List<SelectListItem>();
-                 for (int i = StartWorkYear; i <= CurrentYear; i++)
-                 {
-                     years.Add(new SelectListItem
-                     {
-                         Value = i.ToString(),
-                         Text = i.ToString()
-                     });
-                 }
+            return this.data.Manufacturers
+                .All()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                })
+                .ToList();
+        }
 
-                 return years;
-             });
-
-            return possibleYears;
+        public IEnumerable<SelectListItem> GetAllCategories()
+        { 
+            return this.data.Categories
+                .All()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                })
+                .ToList();
         }
     }
 }

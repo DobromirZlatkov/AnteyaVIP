@@ -1,0 +1,9 @@
+﻿@using AnteyaVIP.Web.Areas.Administration.ViewModels.Manufacturers;
+@{
+    const string ControllerName = "Manufacturers";
+    ViewBag.Title = ControllerName;
+}
+
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<ManufacturerViewModel>(ControllerName, m => m.Name))
+

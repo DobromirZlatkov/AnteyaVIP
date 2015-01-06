@@ -18,6 +18,8 @@ namespace AnteyaVIP.Data
 
         IDbSet<Product> Products { get; set; }
 
+        IDbSet<Picture> Pictures { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

@@ -33,6 +33,8 @@
 
         public virtual IDbSet<Product> Products { get; set; }
 
+        public virtual IDbSet<Picture> Pictures { get; set; }
+
         public DbContext DbContext
         {
             get

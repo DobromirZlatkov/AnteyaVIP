@@ -1,0 +1,65 @@
+﻿@using AnteyaVIP.Web.Areas.Administration.ViewModels.Products
+@model ProductUpdateModel
+@{
+    const string ControllerName = "Products";
+    ViewBag.Title = ControllerName;
+}
+
+<h2>Update Product</h2>
+
+@using (Html.BeginForm("Create", ControllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Price, "")
+            </div>
+
+            <div class="col-md-10">
+                @*@Html.EditorFor(m => m.ManufacturerId, new { ListItem = Model.Manufacturers })*@
+            </div>
+
+            <div class="col-md-10">
+                @*@Html.EditorFor(m => m.CategoryId, new { ListItem = Model.Categories })*@
+            </div>
+
+            <div class="col-md-10">
+                @*<div id="image-input-container" class="display-inline">
+                    <input type="button" value="Add pictures" id="add-new-picture-input" class="btn btn-success" />
+                    <input type="file" name="files" accept=".jpeg , .jpg, .png" id="file-picture" />
+                </div>*@
+                @foreach (var picture in Model.Pictures)
+	            {
+		 
+	            }
+
+                @*<div id="characteristics-input-container" class="display-inline">
+                        <input type="button" value="Add new characteristics" id="add-new-characteristics-input" class="btn btn-success" />
+                        <br />
+                        <h4 id="characteristics-header">Parameter Value</h4>
+                    </div>*@
+            </div>
+
+            <div class="col-md-10">
+                <input type="submit" name="Create" id="create-product" value="Create" class="btn btn-success btn-lg" />
+            </div>
+        </div>
+    </div>
+}
+

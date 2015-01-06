@@ -1,0 +1,8 @@
+﻿@using System.Web
+@model IEnumerable<HttpPostedFileBase>
+
+@(Html.Kendo().Upload()
+        .Name("UploadedImages")
+        .Multiple(true)
+)
+

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using AnteyaVIP.Contracts;
 
@@ -15,11 +16,12 @@
         }
 
         [Key]
-        public int ManufacturerId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
 
         public virtual ICollection<Product> Products

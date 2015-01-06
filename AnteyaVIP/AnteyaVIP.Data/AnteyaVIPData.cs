@@ -30,6 +30,11 @@
             get { return this.GetRepository<User>(); }
         }
 
+        public IRepository<Picture> Pictures
+        {
+            get { return this.GetRepository<Picture>(); }
+        }
+
         public IDeletableEntityRepository<Category> Categories
         {
             get { return this.GetDeletableEntityRepository<Category>(); }

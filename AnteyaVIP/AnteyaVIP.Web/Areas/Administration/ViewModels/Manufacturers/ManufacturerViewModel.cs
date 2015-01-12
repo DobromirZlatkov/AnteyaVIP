@@ -4,18 +4,18 @@
     using System.Web.Mvc;
 
     using AnteyaVIP.Models;
-    using AnteyaVIP.Web.Infrastructure.Mapping;
     using AnteyaVIP.Web.Areas.Administration.ViewModels.Base;
+    using AnteyaVIP.Web.Infrastructure.Mapping;
 
-    public class ManufacturerViewModel :AdministrationViewModel, IMapFrom<Manufacturer>
+    public class ManufacturerViewModel : AdministrationViewModel, IMapFrom<Manufacturer>
     {
         [HiddenInput(DisplayValue = false)]
         public int? Id { get; set; }
 
         [Required]
         [UIHint("String")]
-        [StringLength(100, ErrorMessage = "{0}ят трябва да е между 2 и 100 символа.", MinimumLength = 2)]
-        [Display(Name = "Производител")]
+        [StringLength(100, ErrorMessage = "{0} must be between 2 and 100 symbols", MinimumLength = 2)]
+        [Display(Name = "Manufacturer")]
         public string Name { get; set; }
     }
 }

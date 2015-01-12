@@ -22,18 +22,42 @@ select,
 textarea {
     max-width: 280px;
 }
-.administration-dropdown{
 
+.administration-dropdown {
 }
-.field-validation-error{
-    color:red;
+
+.field-validation-error {
+    color: red;
 }
-#Description{
-    height:200px;
+
+#Description {
+    height: 200px;
 }
-#characteristics-header{
+
+#characteristics-header {
     word-spacing: 90px;
 }
-.display-inline{
-    display:inline-block;
+
+.display-inline {
+    display: inline-block;
+}
+
+.admin-picture {
+    width: 100px;
+}
+
+.orderstatus_1 {
+    background-color: yellow;
+}
+
+.orderstatus_2 {
+    background-color: yellowgreen;
+}
+
+.orderstatus_3 {
+    background-color: red;
+}
+
+.orderstatus_4 {
+    background-color: lightblue;
 }

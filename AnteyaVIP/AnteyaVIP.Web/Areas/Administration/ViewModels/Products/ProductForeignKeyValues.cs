@@ -10,6 +10,7 @@
     public class ProductForeignKeyValues
     {
         public IEnumerable<ManufacturerViewModel> Manufacturers { get; set; }
+
         public IEnumerable<CategoryViewModel> Categories { get; set; }
     }
 }

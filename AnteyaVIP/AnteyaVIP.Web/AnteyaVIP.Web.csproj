@@ -191,12 +191,16 @@
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\CharacteristicsController.cs" />
     <Compile Include="Areas\Administration\Controllers\ManufacturersController.cs" />
+    <Compile Include="Areas\Administration\Controllers\OrderDetailsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Base\AdministrationViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Categories\CategoryViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Characteristics\CharacteristicViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Manufacturers\ManufacturerViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\OrderDetails\OrderDetailViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Orders\OrderViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Pictures\PictureViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Products\ProductForeignKeyValues.cs" />
     <Compile Include="Areas\Administration\ViewModels\Products\ProductInputModel.cs" />
@@ -475,12 +479,11 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Administration\Views\Manufacturers\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Products\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Products\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Decimal.cshtml" />
-    <Content Include="Areas\Administration\Views\Products\Update.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\CategoryId.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ManufacturerId.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Upload.cshtml" />
+    <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1151,8 +1154,6 @@
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administration\Views\Characteristics\" />
-    <Folder Include="Areas\Administration\Views\Pictures\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

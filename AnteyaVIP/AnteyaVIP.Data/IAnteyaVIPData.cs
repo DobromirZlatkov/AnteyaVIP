@@ -15,6 +15,10 @@
 
         IDeletableEntityRepository<Product> Products { get; }
 
+        IDeletableEntityRepository<Order> Orders { get; }
+
+        IDeletableEntityRepository<OrderDetail> OrderDetails { get; }
+
         IRepository<User> Users { get; }
 
         IRepository<Picture> Pictures { get; }

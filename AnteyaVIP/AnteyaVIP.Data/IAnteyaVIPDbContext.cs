@@ -20,6 +20,10 @@ namespace AnteyaVIP.Data
 
         IDbSet<Picture> Pictures { get; set; }
 
+        IDbSet<Order> Orders { get; set; }
+
+        IDbSet<OrderDetail> OrderDetails { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

@@ -12,7 +12,7 @@
         [Column(TypeName = "DateTime")]
         public DateTime? CreatedOn { get; set; }
 
-        [Display(Name = "Changed on")]
+        [Display(Name = "Changed on")]        
         [HiddenInput(DisplayValue = false)]
         [Column(TypeName = "DateTime")]
         public DateTime? ModifiedOn { get; set; }

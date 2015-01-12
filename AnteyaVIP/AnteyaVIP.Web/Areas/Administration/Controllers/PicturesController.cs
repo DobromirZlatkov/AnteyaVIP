@@ -22,7 +22,6 @@
 
     public class PicturesController : AdminController
     {
-
         public PicturesController(IAnteyaVIPData data)
             : base(data)
         {
@@ -39,17 +38,13 @@
             var ads = this.Data.Pictures.All()
                 .Where(c => c.ProductId == productId)
                 .Project()
-                .To<ViewModel>();
-                
-                //foreach (var item in ads.ToList())
-                //{
-                //    this.Picture(item.Id);
-                //}
+                .To<ViewModel>()
+                .ToDataSourceResult(request);
 
-            return this.Json(ads.ToDataSourceResult(request));
+            return this.Json(ads);
         }
 
-        public ActionResult Upload(int productId, IEnumerable<HttpPostedFileBase> UploadedFiles)
+        public ActionResult Create(int productId, IEnumerable<HttpPostedFileBase> UploadedFiles)
         {
             var currentProduct = this.Data.Products.GetById(productId);
 
@@ -68,33 +63,20 @@
                 this.Data.SaveChanges();
             }
 
-           // Values.Pictures = currentProduct.Pictures;
             return Content("");
         }
 
-        public ActionResult Remove(string[] fileNames)
+        [HttpPost]
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
-            // The parameter of the Remove action must be called "fileNames"
+            if (model != null && ModelState.IsValid)
+            {
+                var picture = this.Data.Pictures.GetById(model.Id);
+                this.Data.Pictures.Delete(picture);
+                this.Data.SaveChanges();
+            }
 
-            //if (fileNames != null)
-            //{
-            //    foreach (var fullName in fileNames)
-            //    {
-            //        //var fileName = Path.GetFileName(fullName);
-            //        //var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), fileName);
-
-            //        // TODO: Verify user permissions
-
-            //        if (System.IO.File.Exists(physicalPath))
-            //        {
-            //            // The files are not actually removed in this demo
-            //            // System.IO.File.Delete(physicalPath);
-            //        }
-            //    }
-            //}
-
-            //// Return an empty string to signify success
-            return Content("");
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState));
         }
 
         public ActionResult Picture(int id)

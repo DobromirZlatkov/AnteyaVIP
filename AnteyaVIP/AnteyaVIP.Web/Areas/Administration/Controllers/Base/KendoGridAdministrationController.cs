@@ -21,6 +21,12 @@
 
         protected abstract T GetById<T>(object id) where T : class;
 
+        public JsonResult GetDropDownListData()
+        {
+            var allEntities = this.GetData();
+            return Json(allEntities, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {

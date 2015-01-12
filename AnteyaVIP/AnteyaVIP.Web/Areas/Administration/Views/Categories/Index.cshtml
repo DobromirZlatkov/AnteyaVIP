@@ -5,29 +5,4 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@(Html.FullFeaturedGrid<CategoryViewModel>(ControllerName, m => m.Name))
-@*@(Html.Kendo()
-         .Grid<CategoryViewModel>()
-        .Name("grid")
-        .Columns(cols =>
-        {
-            cols.AutoGenerate(true);
-            cols.Command(com => com.Edit()).Title("Промяна");
-            cols.Command(com => com.Destroy()).Title("Изтриване");
-        })
-        .ColumnMenu()
-        .Pageable(page => page.Refresh(true))
-        .Sortable()
-        .Groupable()
-        .Filterable()
-        .Editable(edit => edit.Mode(GridEditMode.PopUp))
-        .ToolBar(toolbar => toolbar.Create())
-        .DataSource(data =>
-            data
-                .Ajax()
-                .Model(m => m.Id(adv => adv.Id))
-                .Read(read => read.Action("Read", ControllerName))
-                .Create(create => create.Action("Create", ControllerName))
-                .Update(update => update.Action("Update", ControllerName))
-                .Destroy(destroy => destroy.Action("Destroy", ControllerName))
-                ))*@
+@(Html.FullFeaturedGrid<CategoryViewModel>(m => m.Name, ControllerName))

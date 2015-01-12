@@ -90,11 +90,5 @@
         {
             this.service.Clear("categories");
         }
-
-        public JsonResult GetCategories()
-        {
-            var allCategories = this.GetData();
-            return Json(allCategories, JsonRequestBehavior.AllowGet);
-        }
     }
 }

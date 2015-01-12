@@ -55,6 +55,16 @@
             get { return this.GetDeletableEntityRepository<Product>(); }
         }
 
+        public IDeletableEntityRepository<Order> Orders
+        {
+            get { return this.GetDeletableEntityRepository<Order>(); }
+        }
+
+        public IDeletableEntityRepository<OrderDetail> OrderDetails
+        {
+            get { return this.GetDeletableEntityRepository<OrderDetail>(); }
+        }
+
         //public IDeletableEntityRepository<Work> Works
         //{
         //    get { return this.GetDeletableEntityRepository<Work>(); }

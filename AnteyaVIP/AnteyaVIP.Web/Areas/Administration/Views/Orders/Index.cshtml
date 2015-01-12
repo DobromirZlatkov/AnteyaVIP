@@ -1,0 +1,58 @@
+﻿@using AnteyaVIP.Web.Areas.Administration.ViewModels.OrderDetails;
+@using AnteyaVIP.Web.Areas.Administration.ViewModels.Orders;
+@model OrderViewModel
+@{
+    const string ControllerName = "Orders";
+    ViewBag.Title = ControllerName;
+}
+<style>
+
+    
+</style>
+<h2>@ViewBag.Title</h2>
+@(Html.FullFeaturedGrid<OrderViewModel>(m => m.Id, ControllerName, cols =>
+                {
+                    cols.Bound(o => o.Id);
+                    cols.Bound(o => o.FirstName);
+                    cols.Bound(o => o.LastName);
+                    cols.Bound(o => o.Email);
+                    cols.Bound(o => o.Phone);
+                    cols.Bound(o => o.Total);
+                    cols.Bound(o => o.CreditCard);
+                    cols.Bound(o => o.CreatedOn).Hidden();
+                    cols.Bound(o => o.ModifiedOn).Hidden();
+                    cols.Bound(o => o.OrderStatus).HtmlAttributes(new { @class = "orderstatus_" + "#:OrderStatus#" });
+                    cols.Command(c => c.Edit());
+                    cols.Command(c => c.Destroy());
+                }, new { orderId = "#=Id#" }).ClientDetailTemplateId("orderdetails-template"))
+
+<script id="orderdetails-template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<OrderDetailViewModel>()
+        .Name("ImageGrid_#=Id#")
+        .Columns(cols =>
+        {
+            cols.Bound(o => o.Id);
+            cols.Bound(o => o.UnitPrice);
+            cols.Bound(o => o.Quantity);
+            cols.Bound(o => o.ProductId);
+            cols.Bound(o => o.ProductName);
+            cols.Bound(o => o.ProductPicture).ClientTemplate("<img src='" + Url.Content("~/Pictures/Picture/") + "\\#:ProductPicture\\#' alt='#=Id #' Title='#=Id #' height='62' width='62' />").HtmlAttributes(new { @class = "image_in_kendo_grid" });
+            cols.Command(c => c.Edit());
+            cols.Command(c => c.Destroy());
+        })
+        .Pageable(page => page.Refresh(true))
+        .Sortable()
+        .Groupable()
+        .Filterable()
+        .Editable(edit => edit.Mode(GridEditMode.PopUp))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(10)
+            .Model(model => model.Id(p => p.Id))
+            .Read(read => read.Action("Read_OrderDetails", "OrderDetails", new { orderId = "#=Id#" }))
+            .Update(update => update.Action("Update", "OrderDetails"))
+            .Destroy(destroy => destroy.Action("Destroy", "OrderDetails"))
+        )
+        .ToClientTemplate()
+    )
+</script>

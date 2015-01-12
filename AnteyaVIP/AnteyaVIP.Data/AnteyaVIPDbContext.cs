@@ -35,6 +35,10 @@
 
         public virtual IDbSet<Picture> Pictures { get; set; }
 
+        public virtual IDbSet<Order> Orders { get; set; }
+
+        public virtual IDbSet<OrderDetail> OrderDetails { get; set; }
+
         public DbContext DbContext
         {
             get

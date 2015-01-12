@@ -1,17 +1,11 @@
 ﻿namespace AnteyaVIP.Web.Areas.Administration.ViewModels.Products
 {
-    using System.Web;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
     using AnteyaVIP.Models;
-    using AnteyaVIP.Web.Infrastructure.Mapping;
     using AnteyaVIP.Web.Areas.Administration.ViewModels.Base;
-    using AnteyaVIP.Web.Areas.Administration.ViewModels.Manufacturers;
-    using AnteyaVIP.Web.Areas.Administration.ViewModels.Categories;
-    using AutoMapper;
-    using AnteyaVIP.Web.Areas.Administration.ViewModels.Pictures;
+    using AnteyaVIP.Web.Infrastructure.Mapping;
 
     public class ProductInputModel : AdministrationViewModel, IMapFrom<Product>
     {

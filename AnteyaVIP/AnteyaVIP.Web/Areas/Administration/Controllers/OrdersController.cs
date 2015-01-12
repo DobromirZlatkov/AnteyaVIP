@@ -14,14 +14,14 @@
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
 
-    using Model = AnteyaVIP.Models.Manufacturer;
-    using ViewModel = AnteyaVIP.Web.Areas.Administration.ViewModels.Manufacturers.ManufacturerViewModel;
+    using Model = AnteyaVIP.Models.Order;
+    using ViewModel = AnteyaVIP.Web.Areas.Administration.ViewModels.Orders.OrderViewModel;
 
-    public class ManufacturersController : KendoGridAdministrationController
+    public class OrdersController : KendoGridAdministrationController
     {
         private readonly ICacheService service;
 
-        public ManufacturersController(IAnteyaVIPData data, ICacheService service)
+        public OrdersController(IAnteyaVIPData data, ICacheService service)
             : base(data)
         {
             this.service = service;
@@ -34,8 +34,10 @@
 
         protected override IEnumerable GetData()
         {
+           
+
             return this.Data
-                .Manufacturers
+                .Orders
                 .All()
                 .Project()
                 .To<ViewModel>();
@@ -43,27 +45,29 @@
 
         protected override T GetById<T>(object id)
         {
-            return this.Data.Manufacturers.GetById(id) as T;
+            return this.Data.Orders.GetById(id) as T;
         }
 
         [HttpPost]
         public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
-            if (this.Data.Manufacturers.All().Any(c => c.Name == model.Name))
-            {
-                this.ModelState.AddModelError("Unique", "Manufacturer already exists.");
-            }
-          
             var dbModel = base.Create<Model>(model);
             if (dbModel != null) model.Id = dbModel.Id;
-   
             return this.GridOperation(model, request);
         }
 
         [HttpPost]
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
-            base.Update<Model, ViewModel>(model, model.Id);
+            if (model.Id == null)
+            {
+                this.Create(request, model);
+            }
+            else
+            {
+                base.Update<Model, ViewModel>(model, model.Id);
+            }
+
             return this.GridOperation(model, request);
         }
 
@@ -72,16 +76,13 @@
         {
             if (model != null && ModelState.IsValid)
             {
-                var manufacturer = this.Data.Manufacturers.GetById(model.Id.Value);
-
-                foreach (var productId in manufacturer.Products.Select(t => t.Id).ToList())
+                var order = this.Data.Orders.GetById(model.Id.Value);
+                foreach (var orderDetail in order.OrderDetails.Select(o => o.Id).ToList())
                 {
-                    this.Data.Products.Delete(productId);
-                }
+                    this.Data.OrderDetails.Delete(orderDetail);
+                } 
 
-                this.Data.SaveChanges();
-
-                this.Data.Manufacturers.Delete(manufacturer);
+                this.Data.Orders.Delete(order);
                 this.Data.SaveChanges();
             }
 

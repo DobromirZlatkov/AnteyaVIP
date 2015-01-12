@@ -14,13 +14,13 @@
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
 
-    using Model = AnteyaVIP.Models.Characteristic;
-    using ViewModel = AnteyaVIP.Web.Areas.Administration.ViewModels.Characteristics.CharacteristicViewModel;
+    using Model = AnteyaVIP.Models.OrderDetail;
+    using ViewModel = AnteyaVIP.Web.Areas.Administration.ViewModels.OrderDetails.OrderDetailViewModel;
 
-
-    public class CharacteristicsController : KendoGridAdministrationController
+    public class OrderDetailsController : KendoGridAdministrationController
     {
-        public CharacteristicsController(IAnteyaVIPData data)
+        // GET: Administration/OrderDetails
+        public OrderDetailsController(IAnteyaVIPData data)
             : base(data)
         {
         }
@@ -30,25 +30,31 @@
             return View();
         }
 
+        protected override T GetById<T>(object id)
+        {
+            return this.Data.OrderDetails.GetById(id) as T;
+        }
+
         protected override IEnumerable GetData()
         {
             return this.Data
-               .Characteristics
+               .OrderDetails
                .All()
                .Project()
                .To<ViewModel>();
         }
 
-        protected override T GetById<T>(object id)
-        {
-            return this.Data.Characteristics.GetById(id) as T;
-        }
-
         [HttpPost]
-        public ActionResult Read_ProductCharacteristics(int productId, [DataSourceRequest]DataSourceRequest request)
+        public ActionResult Read_OrderDetails(int? orderId, [DataSourceRequest]DataSourceRequest request)
         {
-            var ads = this.Data.Characteristics.All()
-                .Where(c => c.ProductId == productId)
+            var test = this.Data.OrderDetails.All()
+                .Where(c => c.OrderId == orderId.Value)
+                .Project()
+                .To<ViewModel>().ToList();
+
+
+            var ads = this.Data.OrderDetails.All()
+                .Where(c => c.OrderId == orderId.Value)
                 .Project()
                 .To<ViewModel>()
                 .ToDataSourceResult(request);
@@ -57,13 +63,12 @@
         }
 
         [HttpPost]
-        public ActionResult Create(int productId, [DataSourceRequest]DataSourceRequest request, ViewModel model)
+        public ActionResult Create(int orderId, [DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
-            var currentProduct = this.Data.Products.GetById(productId);
-            
+            var currentOrder = this.Data.Orders.GetById(orderId);
+
             var dbModel = Mapper.Map<Model>(model);
-            currentProduct.Characteristics.Add(dbModel);
-            this.Data.Characteristics.Add(dbModel);
+            currentOrder.OrderDetails.Add(dbModel);
             this.Data.SaveChanges();
 
             if (dbModel != null) model.Id = dbModel.Id;
@@ -82,7 +87,7 @@
         {
             if (model != null && ModelState.IsValid)
             {
-                this.Data.Characteristics.Delete(model.Id.Value);
+                this.Data.OrderDetails.Delete(model.Id.Value);
                 this.Data.SaveChanges();
             }
 

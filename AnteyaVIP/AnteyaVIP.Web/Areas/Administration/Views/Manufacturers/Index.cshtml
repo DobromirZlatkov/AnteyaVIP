@@ -5,5 +5,5 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@(Html.FullFeaturedGrid<ManufacturerViewModel>(ControllerName, m => m.Name))
+@(Html.FullFeaturedGrid<ManufacturerViewModel>(m => m.Name, ControllerName))
 

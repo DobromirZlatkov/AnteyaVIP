@@ -1,9 +1,10 @@
 ﻿namespace AnteyaVIP.Models
 {
-    using AnteyaVIP.Contracts;
     using System.ComponentModel.DataAnnotations;
 
-    public class OrderDetail 
+    using AnteyaVIP.Contracts;
+
+    public class OrderDetail : DeletableEntity
     {
         [Key]
         public int Id { get; set; }

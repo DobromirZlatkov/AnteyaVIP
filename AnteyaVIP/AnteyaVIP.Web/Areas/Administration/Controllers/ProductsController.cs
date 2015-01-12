@@ -161,9 +161,7 @@ namespace AnteyaVIP.Web.Areas.Administration.Controllers
 
             var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
             var manufacturers = this.Data.Manufacturers.All().Project().To<ManufacturerViewModel>();
-            //var pictures = this.Data.Pictures.All();
 
-            //Values.Pictures = pictures;
             Values.Categories = categories;
             Values.Manufacturers = manufacturers;
 
@@ -176,7 +174,7 @@ namespace AnteyaVIP.Web.Areas.Administration.Controllers
              .Products
              .All()
              .Project()
-             .To<ViewModel>().ToList();
+             .To<ViewModel>();
         }
 
         protected override T GetById<T>(object id)
@@ -195,8 +193,16 @@ namespace AnteyaVIP.Web.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
-            base.Update<Model, ViewModel>(model, model.Id);
-            return this.GridOperation(model, request);
+            if (model.Id == null)
+            {
+                this.Create(request, model);
+            }
+            else
+            {
+                base.Update<Model, ViewModel>(model, model.Id);
+            }
+
+            return this.GridOperation(model, request);  
         }
 
 

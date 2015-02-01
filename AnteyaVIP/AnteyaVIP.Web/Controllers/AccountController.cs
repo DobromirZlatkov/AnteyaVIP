@@ -10,7 +10,8 @@
     using Microsoft.Owin.Security;
 
     using AnteyaVIP.Models;
-    using AnteyaVIP.Web.Models;
+  //  using AnteyaVIP.Web.Models;
+    using AnteyaVIP.Web.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller

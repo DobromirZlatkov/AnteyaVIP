@@ -7,15 +7,21 @@
     using AnteyaVIP.Web.Infrastructure.Mapping;
     using AnteyaVIP.Web.Areas.Administration.ViewModels.Base;
 
-    public class CategoryViewModel :AdministrationViewModel, IMapFrom<Category>
+    using AutoMapper;
+
+    public class CategoryViewModel : AdministrationViewModel, IMapFrom<Category>
     {
         [HiddenInput(DisplayValue = false)]
         public int? Id { get; set; }
 
-        [Required]
         [UIHint("String")]
-        [StringLength(100, ErrorMessage = "{0} трябва да е между 2 и 100 символа.", MinimumLength = 2)]
-        [Display(Name = "Категория")]
+        [StringLength(100, ErrorMessage = "{0} must be between 2 and 100 symbols", MinimumLength = 2)]
+        [Display(Name = "Category")]
         public string Name { get; set; }
+
+        [Display(Name = "Parent Category Id")]
+       // [UIHint("ParentCategoryId")]
+        public int? ParentCategoryId { get; set; }
+
     }
 }

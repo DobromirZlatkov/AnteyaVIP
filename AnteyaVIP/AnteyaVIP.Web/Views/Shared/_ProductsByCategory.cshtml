@@ -1,0 +1,84 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@using AnteyaVIP.Models
+@model IQueryable<ProductListViewModel>
+@{
+    const string ControllerName = "Products";
+    var test = @Model;
+}
+@{
+    ViewBag.Title = "_ProductsByCategory";
+}
+
+<h2>Products By Category</h2>
+<div id="search-container">
+    <strong>Търси: </strong>
+    @(Html.Kendo()
+    .AutoComplete()
+    .Name("MatchSearch")
+    .DataTextField("Name")
+    .MinLength(1)
+    .DataSource(data =>
+    {
+        data.Read(read =>
+            {
+                read.Action("GetProductData", ControllerName)
+                    .Data("onAdditionalData");
+            })
+            .ServerFiltering(true);
+    }))
+</div>
+
+@if (Model != null)
+{
+    @(Html.Kendo().ListView<ProductListViewModel>()
+        .Name("products-by-category")
+        .TagName("div")
+        .ClientTemplateId("template")
+        .DataSource(dataSource =>
+        {
+            dataSource.Read(read => read.Action("GetProductsByCategoryKendo", ControllerName, new { id = TempData["CategoryId"] }));
+            dataSource.PageSize(10);
+        })
+        .Navigatable()
+        .Pageable()
+    )
+}
+
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product">
+        <a href="/Products/Details/#:Id#">
+            <img src="@Url.Content("~/Products/Picture/")#:PictureId#" alt="#:Name# " />
+        </a>
+        #if(ProductStatus === 2){#
+        <span class="promo"></span>
+        #}else if(ProductStatus === 3){#
+        <span class="sale"></span>
+        #}#
+        <div class="product-description">
+            <h3>#:Name#</h3>
+            <p>
+                #:kendo.toString(Price)# лв.
+            </p>
+            <a class="product-order-btn btn btn-sm btn-success pull-right" data-ajax="true" data-ajax-method="Post" data-ajax-mode="replace" data-ajax-update="\\#basket" href="/OrderDetails/Create?Id=#:Id#">Поръчай</a>
+        </div>
+    </div>
+</script>
+
+<script>
+    function onAdditionalData() {
+        return {
+            text: $('#MatchSearch').val()
+        };
+    }
+</script>
+
+<script>
+    $('#MatchSearch').change(function () {
+
+        $filter = new Array();
+        $filter.push({ field: "Name", operator: "contains", value: $('#MatchSearch').val() });
+        var lw = $("#products-by-category").data("kendoListView");
+        lw.dataSource.filter($filter);
+    })
+</script>

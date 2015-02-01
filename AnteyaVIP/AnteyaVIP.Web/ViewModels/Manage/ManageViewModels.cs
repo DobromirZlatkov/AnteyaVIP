@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace AnteyaVIP.Web.Models
+namespace AnteyaVIP.Web.ViewModels
 {
     public class IndexViewModel
     {

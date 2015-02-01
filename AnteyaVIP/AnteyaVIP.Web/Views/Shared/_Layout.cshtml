@@ -12,6 +12,9 @@
     @Styles.Render("~/Content/kendo")
     @RenderSection("styles", required: false)
     @Styles.Render("~/Content/custom")
+    @Scripts.Render("~/bundles/boxslider")
+    @Styles.Render("~/Content/boxslider")
+
 
 </head>
 <body>
@@ -46,26 +49,34 @@
                         </ul>
                     </li>
                     @*}*@
+
                 </ul>
+                <div id="lightbox">
+                    <div id="container"></div>
+                    Lightbox
+                </div>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+       
+    </div>
+    <hr />
+    <div class="container">
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/kendo")
-    @RenderSection("scripts", required: false)
-    <script>
-        $(function () {
-            $('#menu').kendoMenu();
-        })
-    </script>
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/kendo")
+        <script src="~/Scripts/custom/orderEffects.js"></script>
+        @RenderSection("scripts", required: false)
+        <script>
+            $(function () {
+                $('#menu').kendoMenu();
+            })
+        </script>
 </body>
 </html>

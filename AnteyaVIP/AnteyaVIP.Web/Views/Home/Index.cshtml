@@ -1,13 +1,52 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <div class="jumbotron">
     <h1>@Html.Localize("homepage")</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-   
 </div>
+<div class="row">
+    <aside class="col-md-4">
+        <div class="jumbotron" id="category-container">
+            @(Html.Kendo().TreeView()
+        .Name("treeview")
+        .HtmlAttributes(new { @class = "tree-section" })
+        .DataTextField("Name")
+        .DataSource(dataSource => dataSource.Read(read => read.Action("GetCategories", "Categories")))
+        .Template("<a data-ajax='true' data-ajax-method='Post' data-ajax-update='\\#work-votes' data-ajax-mode='replace' href='/Products/GetProductsByCategory/#:item.id#' class='category-node' id='vote-up-button'>#:item.Name#</a>")
+        )
+        </div>
+    </aside>
+
+    <div class="col-md-8">
+        <div id="listView">
+            <div id="different-products">
+                @Html.Action("LatestProducts", "Products")
+                @Html.Action("ProductPromotions", "Products")
+               
+            </div>
+
+            <div id="work-votes">
+                @Html.Partial("_ProductsByCategory")
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#work-votes").hide();
+    $("#treeview").on("click", "a", function myfunction() {
+        $("#work-votes").show();
+        $("#different-products").hide();
+    })
+</script>
+
+@*<script>
+    function onSelect(e) {
+        var data = $('#treeview').data('kendoTreeView').dataItem(e.node);
+     
+        //alert("node clicked" + data.id);
+        window.location  = @Url.Action("Edit", "Employee", new { id = data.id });
+         
+    }
+</script>*@

@@ -22,7 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
-
+#work-votes{
+    width:100%;
+    height:250px;
+}
 .administration-dropdown {
 }
 
@@ -60,4 +63,33 @@ textarea {
 
 .orderstatus_4 {
     background-color: lightblue;
+}
+.aside-categories-container{
+    display:inline-block;
+}
+.promo, .new{
+    position:absolute;
+    height:56px;
+    width:56px;
+    bottom:0;
+    right:0;
+    background:url(../Content/web/fx/promo.png);
+}
+
+.new{
+    position:absolute;
+    height:56px;
+    width:56px;
+    bottom:0;
+    right:0;
+    background:url(../Content/web/fx/new.png);
+}
+
+.sale{
+    position:absolute;
+    height:56px;
+    width:56px;
+    top:0;
+    right:0;
+    background:url(../Content/web/fx/sale.png) repeat no-repeat;
 }

@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using AnteyaVIP.Web.Models;
+//using AnteyaVIP.Web.Models;
 using AnteyaVIP.Data;
 using AnteyaVIP.Models;
 

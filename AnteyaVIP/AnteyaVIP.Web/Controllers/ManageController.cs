@@ -6,8 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AnteyaVIP.Web.Models;
+//using AnteyaVIP.Web.Models;
 using AnteyaVIP.Models;
+using AnteyaVIP.Web.ViewModels;
 
 namespace AnteyaVIP.Web.Controllers
 {

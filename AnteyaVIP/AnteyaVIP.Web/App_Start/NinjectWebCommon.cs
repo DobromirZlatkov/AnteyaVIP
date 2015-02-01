@@ -77,6 +77,8 @@ namespace AnteyaVIP.Web.App_Start
             kernel.Bind<ICacheService>().To<InMemoryCache>();
 
             kernel.Bind<IDropDownListPopulator>().To<DropDownListPopulator>();
+
+            kernel.Bind<IKendoDropDownListPopulator>().To<KendoDropDownListPopulator>();
         }        
     }
 }

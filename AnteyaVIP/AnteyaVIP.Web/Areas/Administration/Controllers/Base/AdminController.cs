@@ -13,12 +13,12 @@
    // [Authorize(Roles = GlobalConstants.AdminRole)]
     public abstract class AdminController : BaseController
     {
-        protected ProductForeignKeyValues Values { get; private set; }
+    //    protected ProductForeignKeyValues Values { get; private set; }
 
         public AdminController(IAnteyaVIPData data)
             : base(data)
         {
-           // Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
         }
     }
 }

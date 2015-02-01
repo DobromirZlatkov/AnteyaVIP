@@ -1,8 +1,26 @@
 ﻿@using AnteyaVIP.Web.Areas.Administration.ViewModels.Categories;
+@using AnteyaVIP.Web.Infrastructure.Populators;
+@model KendoDropDownListPopulator
 @{
     const string ControllerName = "Categories";
     ViewBag.Title = ControllerName;
 }
 
 <h2>@ViewBag.Title</h2>
-@(Html.FullFeaturedGrid<CategoryViewModel>(m => m.Name, ControllerName))
+@(Html.FullFeaturedGrid<CategoryViewModel>(m => m.Name, ControllerName,
+    col =>
+    {
+        col.Bound(c => c.Id);
+        col.Bound(c => c.Name);
+        col.ForeignKey(c => c.ParentCategoryId, Model.Categories, "Id", "Name").Width(300).EditorTemplateName("ParentCategoryId");
+        col.Bound(c => c.CreatedOn).Hidden();
+        col.Bound(c => c.ModifiedOn).Hidden();
+        col.Command(com => com.Edit()).Title("Edit");
+        col.Command(com => com.Destroy()).Title("Delete");
+    }, new { categoryId = "#=Id#" }))
+
+<script>
+    function dataBound() {
+        this.expandRow(this.tbody.find("tr.k-master-row").first());
+    }
+</script>

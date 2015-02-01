@@ -41,6 +41,8 @@
 
         //TO DO add product sizes for shipping info
 
+        public ProductStatus ProductStatus { get; set; }
+
         public int ProductStock { get; set; }
 
         public int ManufacturerId { get; set; }

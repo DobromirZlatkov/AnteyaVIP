@@ -1,0 +1,20 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@model ProductPromotionViewModel
+@{
+    ViewBag.Title = "ProductPromotionViewTemplate";
+    const string ControllerName = "Product";
+}
+<li>
+    <div class="main">
+        <a href="~/Products/Details/@Model.Id">
+            <img src="@Url.Content("~/Products/Picture/")@Model.PictureId" alt="@Model.Name" width="230" height="160" />
+        </a>
+        <span class="promo"></span>
+    </div>
+    <h1>@Model.Name</h1>
+    <span style="font-size: 12pt; line-height: 18.3999996185303px;">Зимни предложения от ToolsShop.bg</span><span style="font-size: 12pt; line-height: 18.3999996185303px;">.</span>
+    <div>
+        <span style="line-height: 18.3999996185303px;">@Model.Description<br></span><span style="font-size: 12pt; line-height: 18.3999996185303px;"></span>
+    </div>
+</li>
+

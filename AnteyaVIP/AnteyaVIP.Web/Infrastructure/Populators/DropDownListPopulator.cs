@@ -10,8 +10,6 @@
 
     public class DropDownListPopulator : IDropDownListPopulator
     {
-        private const int StartWorkYear = 1800;
-        private int CurrentYear = DateTime.Now.Year;
         private IAnteyaVIPData data;
         private ICacheService cache;
 

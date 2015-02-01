@@ -34,8 +34,6 @@
 
         protected override IEnumerable GetData()
         {
-           
-
             return this.Data
                 .Orders
                 .All()

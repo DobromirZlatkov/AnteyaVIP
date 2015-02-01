@@ -1,0 +1,19 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@model IQueryable<ProductPromotionViewModel>
+@{
+    const string ControllerName = "Products";
+}
+<div id="listView">
+    <ul class="promotion-boxslider">
+        @foreach (var product in Model)
+        {
+            @Html.DisplayFor(m => product, "ProductPromotionViewTemplate")
+        }
+    </ul>
+</div>
+<script>
+    $('.promotion-boxslider').bxSlider({
+        auto: true,
+        autoControls: true
+    });
+</script>

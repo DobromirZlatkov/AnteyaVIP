@@ -31,19 +31,14 @@
         // public double ProductWeigth { get; set; }
          //TO DO add product sizes for shipping info
         [UIHint("ManufacturerId")]
+        [Display(Name = "Manufacturer")]
         public int ManufacturerId { get; set; }
 
         [Required(ErrorMessage = "Category is required")]
+        [Display(Name = "Category")]
         [UIHint("CategoryId")]
         public int CategoryId { get; set; }
 
-        //public ICollection<PictureViewModel> Images { get; set; }
-
-        //public void CreateMappings(IConfiguration configuration)
-        //{
-        //    configuration.CreateMap<Product, ProductInputModel>()
-        //        .ForMember(m => m.Images, opt => opt.MapFrom(t => t.Pictures))
-        //        .ReverseMap();
-        //}
+        public ProductStatus ProductStatus { get; set; }
     }
 }

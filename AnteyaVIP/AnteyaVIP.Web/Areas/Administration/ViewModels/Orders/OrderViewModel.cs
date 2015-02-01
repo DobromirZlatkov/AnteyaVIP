@@ -10,9 +10,11 @@
     using AnteyaVIP.Models;
     using AnteyaVIP.Web.Areas.Administration.ViewModels.Base;
     using AnteyaVIP.Web.Infrastructure.Mapping;
+    using AnteyaVIP.Web.Areas.Administration.ViewModels.OrderDetails;
 
     public class OrderViewModel : AdministrationViewModel, IMapFrom<Order>
     {
+      
         [HiddenInput(DisplayValue = false)]
         public int? Id { get; set; }
 
@@ -52,8 +54,9 @@
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [ScaffoldColumn(false)]
+        //[ScaffoldColumn(false)]
         public decimal Total { get; set; }
+       
 
         [Display(Name = "Credit Card")]
         [DataType(DataType.CreditCard)]

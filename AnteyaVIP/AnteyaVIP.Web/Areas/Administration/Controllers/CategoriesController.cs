@@ -17,20 +17,26 @@
     using Model = AnteyaVIP.Models.Category;
     using ViewModel = AnteyaVIP.Web.Areas.Administration.ViewModels.Categories.CategoryViewModel;
     using AnteyaVIP.Web.Areas.Administration.ViewModels.Categories;
+    using AnteyaVIP.Web.Areas.Administration.ViewModels.Products;
+    using AnteyaVIP.Web.Infrastructure.Populators;
 
     public class CategoriesController : KendoGridAdministrationController
     {
-        private readonly ICacheService service;
+        private readonly IKendoDropDownListPopulator populator;
 
-        public CategoriesController(IAnteyaVIPData data, ICacheService service)
+        public CategoriesController(IAnteyaVIPData data, IKendoDropDownListPopulator populator)
             : base(data)
         {
-            this.service = service;
+            this.populator = populator;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var categories = this.Data.Categories.All().Project().To<ViewModel>();
+
+            populator.Categories = categories;
+
+            return View(populator);
         }
 
         protected override IEnumerable GetData()
@@ -51,8 +57,7 @@
         public ActionResult Create([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {      
             var dbModel = base.Create<Model>(model);
-            if (dbModel != null) model.Id = dbModel.Id;
-            this.ClearCategoryCache();       
+            if (dbModel != null) model.Id = dbModel.Id;  
             return this.GridOperation(model, request);
         }
 
@@ -60,7 +65,6 @@
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
             base.Update<Model, ViewModel>(model, model.Id);
-            this.ClearCategoryCache();
             return this.GridOperation(model, request);
         }
 
@@ -82,13 +86,7 @@
                 this.Data.SaveChanges();
             }
 
-            this.ClearCategoryCache();
             return this.GridOperation(model, request);
-        }
-
-        private void ClearCategoryCache()
-        {
-            this.service.Clear("categories");
         }
     }
 }

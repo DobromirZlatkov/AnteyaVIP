@@ -1,0 +1,18 @@
+﻿    .inline-block {
+        display: inline-block;
+    }
+
+    #bx-pager {
+        float: left;
+    }
+
+
+    .product-images-container {
+        height: 333px;
+        width: 500px;
+    }
+
+    .details-image {
+        width: 500px;
+        height: 333px;
+    }

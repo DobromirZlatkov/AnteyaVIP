@@ -206,9 +206,11 @@
     <Compile Include="Areas\Administration\ViewModels\Products\ProductInputModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,15 +223,41 @@
     <Compile Include="Infrastructure\ModelBinders\EntityModelBinder.cs" />
     <Compile Include="Infrastructure\Populators\DropDownListPopulator.cs" />
     <Compile Include="Infrastructure\Populators\IDropDownListPopulator.cs" />
+    <Compile Include="Infrastructure\Populators\IKendoDropDownListPopulator.cs" />
+    <Compile Include="Infrastructure\Populators\KendoDropDownListPopulator.cs" />
+    <Compile Include="Infrastructure\Services\CategoryServices.cs" />
+    <Compile Include="Infrastructure\Services\Contracts\ICategoryServices.cs" />
+    <Compile Include="Infrastructure\Services\Contracts\IProductServices.cs" />
+    <Compile Include="Infrastructure\Services\ProductServices.cs" />
     <Compile Include="Infrastructure\Validation\DoesNotContainAttribute.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\Account\LogInViewModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Category\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Pictures\PictureViewModel.cs" />
+    <Compile Include="ViewModels\Products\Base\ProductCommon.cs" />
+    <Compile Include="ViewModels\Products\Base\ProductList.cs" />
+    <Compile Include="ViewModels\Products\ProductAutoCompleteViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductListViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductPromotionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\boxslider\images\bx_loader.gif" />
+    <Content Include="Content\boxslider\images\controls.png" />
+    <Content Include="Content\boxslider\jquery.bxslider.css" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -445,6 +473,17 @@
     <Content Include="Content\kendo\Uniform\slider-v.gif" />
     <Content Include="Content\kendo\Uniform\sprite.png" />
     <Content Include="Content\kendo\Uniform\sprite_2x.png" />
+    <Content Include="Content\magnifier\magnifier.css" />
+    <Content Include="Content\magnifier\mit-license.txt" />
+    <Content Include="Content\ProductDetails.css" />
+    <Content Include="Content\ProductList.css" />
+    <Content Include="Content\web\details\arrow-left.png" />
+    <Content Include="Content\web\details\arrow-right.png" />
+    <Content Include="Content\web\details\book.png" />
+    <Content Include="Content\web\fx\Cart.png" />
+    <Content Include="Content\web\fx\new.png" />
+    <Content Include="Content\web\fx\promo.png" />
+    <Content Include="Content\web\fx\sale.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -484,10 +523,19 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ManufacturerId.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Upload.cshtml" />
     <Content Include="Areas\Administration\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\ParentCategoryId.cshtml" />
+    <Content Include="Content\magnifier\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\boxslider\jquery.bxslider.min.js" />
+    <Content Include="Scripts\boxslider\plugins\jquery.easing.1.3.js" />
+    <Content Include="Scripts\boxslider\plugins\jquery.fitvids.js" />
+    <Content Include="Scripts\custom\orderEffects.js" />
+    <Content Include="Scripts\custom\slider.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -979,6 +1027,9 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-CN.min.js" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.min.js" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js" />
+    <Content Include="Scripts\magnifier\Event.js" />
+    <Content Include="Scripts\magnifier\Gallery.js" />
+    <Content Include="Scripts\magnifier\Magnifier.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1152,9 +1203,16 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ProductListViewTemplate.cshtml" />
+    <Content Include="Views\Products\_LatestProducts.cshtml" />
+    <Content Include="Views\Products\_ProductPromotions.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ProductPromotionViewTemplate.cshtml" />
+    <Content Include="Views\Shared\_ProductsByCategory.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

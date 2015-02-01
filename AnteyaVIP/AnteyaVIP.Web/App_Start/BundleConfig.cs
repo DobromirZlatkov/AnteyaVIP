@@ -25,8 +25,14 @@ namespace AnteyaVIP.Web
                         "~/Content/kendo/kendo.common-bootstrap.min.css",
                         "~/Content/kendo/kendo.flat.min.css"));
 
+            bundles.Add(new StyleBundle("~/Content/boxslider").Include(
+                        "~/Content/boxslider/jquery.bxslider.css"));
+
             bundles.Add(new StyleBundle("~/Content/custom").Include(
-                        "~/Content/Site.css"));
+                        "~/Content/Site.css",
+                        "~/Content/ProductList.css"));
+
+
         }
 
         private static void RegisterScriptBundles(BundleCollection bundles)
@@ -40,7 +46,8 @@ namespace AnteyaVIP.Web
                         "~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                       "~/Scripts/jquery.validate*"));
+                       "~/Scripts/jquery.validate*",
+                       "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
@@ -48,6 +55,10 @@ namespace AnteyaVIP.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/boxslider").Include(
+               "~/Scripts/boxslider/jquery.bxslider.min.js",
+               "~/Scripts/boxslider/plugins/jquery*"));
         }
     }
 }

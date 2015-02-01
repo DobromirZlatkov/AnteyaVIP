@@ -1,0 +1,21 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@model ProductListViewModel
+@{
+    ViewBag.Title = "ProductListViewTemplate";
+    const string ControllerName = "Product";
+}
+
+<li class="product">
+    <a href="~/Products/Details/@Model.Id">
+        <img src="@Url.Content("~/Products/Picture/")@Model.PictureId" alt="@Model.Name" />
+        <span class="new"></span>
+        <div class="product-description">
+            <h3>@Model.Name</h3>
+            <p>
+                @Model.Price лв.
+            </p>
+            @Ajax.ActionLink("Поръчай", "Create", "OrderDetails", new { WorkId = Model.Id }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "basket", HttpMethod = "Post", }, new { @class = "product-order-btn btn btn-sm btn-success pull-right" })
+        </div>
+    </a>
+</li>
+

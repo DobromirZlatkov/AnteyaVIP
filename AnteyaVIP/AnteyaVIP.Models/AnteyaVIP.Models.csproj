@@ -68,6 +68,7 @@
     <Compile Include="OrderDetail.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductStatus.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

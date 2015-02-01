@@ -1,128 +1,4 @@
-﻿//namespace AnteyaVIP.Web.Areas.Administration.Controllers
-//{
-//    using System.Collections.Generic;
-//    using System.IO;
-//    using System.Net;
-//    using System.Web;
-//    using System.Web.Mvc;
-//    using System.Linq;
-
-//    using AutoMapper;
-
-//    using AnteyaVIP.Data;
-//    using AnteyaVIP.Models;
-//    using AnteyaVIP.Web.Areas.Administration.Controllers.Base;
-//    using AnteyaVIP.Web.Areas.Administration.ViewModels.Products;
-//    using AnteyaVIP.Web.Infrastructure.Populators;
-
-//    public class ProductsController : AdminController
-//    {
-//        private const int ProductsListPageSize = 5;
-//        private IDropDownListPopulator populator;
-
-
-//        public ProductsController(IAnteyaVIPData data, DropDownListPopulator populator)
-//            : base(data)
-//        {
-//            this.populator = populator;
-//        }
-
-//        // GET: Administration/Products
-//        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-//        {
-//            return View();
-//        }
-
-//        [HttpGet]
-//        public ActionResult Create()
-//        {
-//            var productInputModel = new ProductInputModel
-//            {
-//                Manufacturers = this.populator.GetAllManufacturers(),
-//                Categories = this.populator.GetAllCategories()
-//            };
-
-//            return View(productInputModel);
-//        }
-
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public ActionResult Create(ProductInputModel inputProduct)
-//        {
-//            if (inputProduct != null && ModelState.IsValid)
-//            {
-//                var newProduct = Mapper.Map<Product>(inputProduct);
-
-//                if (inputProduct.UploadedImages != null)
-//                {
-//                    foreach (var image in inputProduct.UploadedImages)
-//                    {
-//                        var currentImage = new Picture 
-//                        {
-//                            File = image,
-//                            FileExtension = image.FileName.Split(new[] { '.' }).Last()
-//                        };
-        
-//                        newProduct.Pictures.Add(currentImage);
-//                    }
-//                }
-
-//                this.Data.Products.Add(newProduct);
-//                this.Data.SaveChanges();
-//              //  return View("Update", newProduct.Id);
-//                return RedirectToAction("Update/"+newProduct.Id);
-//            }
-
-//            inputProduct.Manufacturers = this.populator.GetAllManufacturers();
-//            inputProduct.Categories = this.populator.GetAllCategories();
-//            return View(inputProduct);
-//        }
-
-//        // GET: Products/Update/5
-//        [HttpGet]
-//        public ActionResult Update(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//            }
-
-//            var product = this.Data.Products.GetById(id);
-
-//            //to do add admin product view model
-
-//            var newProduct = Mapper.Map<ProductUpdateModel>(product);
-//            newProduct.Manufacturers = this.populator.GetAllManufacturers();
-//            newProduct.Categories = this.populator.GetAllCategories();
-
-//            if (product == null)
-//            {
-//                return HttpNotFound();
-//            }
-
-//            return View(newProduct);
-//        }
-
-//        [HttpPost]
-//        public ActionResult Update(ProductUpdateModel updateProduct, int id)
-//        {
-  
-//            var product = this.Data.Products.GetById(id);
-
-//            //to do add admin product view model
-
-//            if (product == null)
-//            {
-//                return HttpNotFound();
-//            }
-
-//            return View(product);
-//        }
-//    }
-//}
-
-
-namespace AnteyaVIP.Web.Areas.Administration.Controllers
+﻿namespace AnteyaVIP.Web.Areas.Administration.Controllers
 {
     using System.Collections;
     using System.Web.Mvc;
@@ -148,24 +24,25 @@ namespace AnteyaVIP.Web.Areas.Administration.Controllers
 
     public class ProductsController : KendoGridAdministrationController
     {
+        private readonly IKendoDropDownListPopulator populator;
 
-        public ProductsController(IAnteyaVIPData data)
+        public ProductsController(IAnteyaVIPData data, IKendoDropDownListPopulator populator)
             : base(data)
         {
+            this.populator = populator;
         }
 
 
         public ActionResult Index()
         {
-            ProductForeignKeyValues Values = new ProductForeignKeyValues();
 
             var categories = this.Data.Categories.All().Project().To<CategoryViewModel>();
             var manufacturers = this.Data.Manufacturers.All().Project().To<ManufacturerViewModel>();
 
-            Values.Categories = categories;
-            Values.Manufacturers = manufacturers;
+            populator.Categories = categories;
+            populator.Manufacturers = manufacturers;
 
-            return View(Values);
+            return View(populator);
         }
 
         protected override IEnumerable GetData()

@@ -1,0 +1,21 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@model IQueryable<ProductListViewModel>
+@{
+    const string ControllerName = "Products";
+}
+<ul class="bxslider">
+    @foreach (var product in Model)
+    {
+        @Html.DisplayFor(m => product, "ProductListViewTemplate")
+    }
+</ul>
+
+<script>
+    $('.bxslider').bxSlider({
+        minSlides: 3,
+        maxSlides: 4,
+        slideWidth: 180,
+        slideMargin: 20
+    });
+</script>
+

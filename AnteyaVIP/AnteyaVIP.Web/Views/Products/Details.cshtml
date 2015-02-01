@@ -1,0 +1,89 @@
+﻿@using AnteyaVIP.Web.ViewModels.Products
+@model ProductDetailsViewModel
+@{
+    const string ControllerName = "Products";
+    ViewBag.Title = "Details";
+    var pageIndex = 0;
+}
+<link rel="stylesheet" type="text/css" href="~/Content/magnifier/magnifier.css">
+<link rel="stylesheet" type="text/css" href="~/Content/ProductDetails.css">
+<h2>@Model.Name</h2>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="product-images-container">
+            <ul class="product-details-image-slider inline-block">
+                @foreach (var pictureId in @Model.PictureIds)
+                {
+                    <li class="magnifier-thumb-wrapper" data-large-img-wrapper="preview">
+                        <img src="@Url.Content("~/Products/Picture/")@pictureId.Id" alt="Page 1" class="thumb" />
+                    </li>
+                }
+            </ul>
+            <div id="bx-pager" class="inline-block">
+                @for (int i = 0; i < @Model.PictureIds.Count; i++)
+                {
+                    <a data-slide-index="@i" href=""><img src="@Url.Content("~/Products/Picture/")@Model.PictureIds[i].Id" alt="Page 1" width="81" height="81" /></a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 magnifier-preview inline-block" style="width: 500px; height: 433px" id="preview">
+        <div>
+            <h3>Категория</h3>
+            @Model.Category
+        </div>
+        <div>
+            <h3>Производител</h3>
+            @Model.Manufacturer
+        </div>
+        <div>
+            <h3>Описание</h3>
+            @Model.Description
+        </div>
+        <div>
+            <h3>Цена</h3>
+            @Model.Price лв.
+        </div>
+    </div>
+</div>
+<div class="row">
+    @if (@Model.Characteristics.Count > 0)
+    {
+        <h3>Характеристики</h3>
+        <table cellpadding="0" cellspacing="0" width="100%" class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Параметър</th>
+                    <th>Стойност</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var characteristic in @Model.Characteristics)
+                {
+                    <tr>
+                        <td>@characteristic.Parameter</td>
+                        <td>@characteristic.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<script>
+    $('.product-details-image-slider').bxSlider({
+        pagerCustom: '#bx-pager'
+    });
+</script>
+<script type="text/javascript" src="~/Scripts/magnifier/Event.js"></script>
+<script type="text/javascript" src="~/Scripts/magnifier/Magnifier.js"></script>
+<script type="text/javascript">
+    var evt = new Event(),
+        m = new Magnifier(evt);
+</script>
+<script>
+    m.attach({
+        thumb: '.thumb',
+        largeWrapper: 'preview',
+        zoom: 3
+    });
+</script>

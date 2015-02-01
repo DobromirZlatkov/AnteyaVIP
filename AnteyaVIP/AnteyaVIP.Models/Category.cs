@@ -9,10 +9,12 @@
     public class Category : DeletableEntity
     {
         private ICollection<Product> products;
+       // private ICollection<Category> categories;
 
         public Category()
         {
             this.products = new HashSet<Product>();
+         //   this.categories = new HashSet<Category>();
         }
 
         [Key]
@@ -29,5 +31,13 @@
             get{ return this.products; }
             set { this.products = value; }
         }
+
+        //public virtual ICollection<Category> ChildCategories
+        //{
+        //    get { return this.categories; }
+        //    set { this.categories = value; }
+        //}
+
+        public int? ParentCategoryId { get; set; }
     }
 }

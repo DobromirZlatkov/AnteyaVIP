@@ -47,12 +47,6 @@
         [HttpPost]
         public ActionResult Read_OrderDetails(int? orderId, [DataSourceRequest]DataSourceRequest request)
         {
-            var test = this.Data.OrderDetails.All()
-                .Where(c => c.OrderId == orderId.Value)
-                .Project()
-                .To<ViewModel>().ToList();
-
-
             var ads = this.Data.OrderDetails.All()
                 .Where(c => c.OrderId == orderId.Value)
                 .Project()
@@ -66,11 +60,11 @@
         public ActionResult Create(int orderId, [DataSourceRequest]DataSourceRequest request, ViewModel model)
         {
             var currentOrder = this.Data.Orders.GetById(orderId);
-
+          
             var dbModel = Mapper.Map<Model>(model);
+           // currentOrder.Total += dbModel.UnitPrice * dbModel.Quantity; // for non admin part
             currentOrder.OrderDetails.Add(dbModel);
             this.Data.SaveChanges();
-
             if (dbModel != null) model.Id = dbModel.Id;
             return this.GridOperation(model, request);
         }

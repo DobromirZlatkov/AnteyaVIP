@@ -12,7 +12,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
-    using AnteyaVIP.Web.Models;
+    using AnteyaVIP.Web.ViewModels;
     using AnteyaVIP.Models;
     using AnteyaVIP.Data;
 
